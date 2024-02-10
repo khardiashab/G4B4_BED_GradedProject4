@@ -41,7 +41,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         } else if (sortOrder.equalsIgnoreCase("desc")) {
             dir = Direction.DESC;
         } else {
-            throw new RuntimeException();
+            dir = Direction.ASC;
         }
         Sort sort = Sort.by(dir, "firstName");
         return repository.findAll(sort);

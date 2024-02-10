@@ -6,16 +6,16 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
 
-@Component
 @Configuration
+@EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -39,7 +39,7 @@ public class SecurityConfig {
         // Security filter
         http.authorizeHttpRequests(auth -> auth
         .requestMatchers("/h2-console**", "/api/user").permitAll()
-        .requestMatchers("/api/")
+        .requestMatchers("/api/**").permitAll()
         );
 
         // Basic form login
