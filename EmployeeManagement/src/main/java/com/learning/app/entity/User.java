@@ -1,6 +1,7 @@
 package com.learning.app.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -42,16 +43,18 @@ public class User {
     @Size(min = 2, max = 50, message = "Username length should be from 2 to 50")
     private String username;
 
-    @NotEmpty(message="password can't empty.")
+    @NotEmpty(message = "password can't empty.")
     private String password;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "user_role_table",
-        joinColumns = @JoinColumn(name="user_id"),
-        inverseJoinColumns = @JoinColumn(name="role_id")
-    )
+    @ManyToMany( fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role_table", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
 
-}
+    public void addRole(Role role) {
+        if (this.roles == null) {
+            this.roles = new ArrayList<>();
+        }
+        this.roles.add(role);
+    }
 
+}

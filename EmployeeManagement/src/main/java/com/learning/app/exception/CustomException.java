@@ -4,13 +4,13 @@ public class CustomException extends RuntimeException {
 
     private final int errorCode;
 
-    public CustomException(String arg0, int errorCode) {
-        super(arg0);
+    public CustomException(String message, int errorCode) {
+        super(message);
         this.errorCode = errorCode;
     }
 
-    public CustomException(String arg0, Throwable arg1, int errorCode) {
-        super(arg0, arg1);
+    public CustomException(String message, Throwable arg1, int errorCode) {
+        super(message, arg1);
         this.errorCode = errorCode;
     }
 

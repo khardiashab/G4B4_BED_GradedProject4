@@ -12,15 +12,15 @@ import org.springframework.security.web.SecurityFilterChain;
 @Profile("test")
 public class NoSecurityConfig {
 
+    // For removing all the security to all routes for test without security.
     @Bean
     WebSecurityCustomizer webSecurityCustomizer(){
         return (web) -> web.ignoring().requestMatchers("/**");
     }
 
-    
+    // To disable the csrf and cors to working fine with input 
     @Bean
     SecurityFilterChain noSecurity(HttpSecurity http) throws Exception {
-
         http.cors(cors -> cors.disable())
                 .csrf(csrf -> csrf.disable())
                 .formLogin(Customizer.withDefaults());

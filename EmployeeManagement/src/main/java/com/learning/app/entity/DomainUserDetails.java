@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class CustomUserDetails implements UserDetails {
+public class DomainUserDetails implements UserDetails {
 
     private final User user;
 

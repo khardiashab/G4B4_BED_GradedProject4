@@ -23,10 +23,10 @@ public class GlobalExceptionHandler {
             errors.add(error.getDefaultMessage());
         });
         Map<String, Object> response = new HashMap<>();
-        response.put("errorCode", HttpStatus.BAD_REQUEST);
+        response.put("errorCode", HttpStatus.UNPROCESSABLE_ENTITY);
         response.put("message", "Request Failed");
         response.put("errors", errors);
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     @ExceptionHandler(CustomException.class)

@@ -10,6 +10,6 @@ import com.learning.app.entity.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-    List<Employee> findByFirstName(String firstName);
+    List<Employee> findByFirstNameIgnoreCase(String firstName);
     
 }

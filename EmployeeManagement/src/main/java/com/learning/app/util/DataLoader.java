@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class DataLoader {
     
-    private final Faker faker = new Faker();
+    private Faker faker = new Faker();
     private final EmployeeService employeeService;
 
     @EventListener(ApplicationReadyEvent.class)
@@ -24,7 +24,6 @@ public class DataLoader {
         IntStream.range(0, 100).forEach(index ->{
             getNewEmployee();
         });
-
     }
 
     private void getNewEmployee() {
@@ -34,4 +33,5 @@ public class DataLoader {
         Employee newEmployee = new Employee(firstName, lastName, email);
         employeeService.save(newEmployee);
     }
+
 }

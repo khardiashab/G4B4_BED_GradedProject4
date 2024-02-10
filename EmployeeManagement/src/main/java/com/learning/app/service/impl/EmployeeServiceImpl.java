@@ -1,4 +1,4 @@
-package com.learning.app.service;
+package com.learning.app.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.learning.app.entity.Employee;
 import com.learning.app.repository.EmployeeRepository;
+import com.learning.app.service.EmployeeService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -54,7 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findByFirstName(String firstName) {
-        return repository.findByFirstName(firstName);
+        return repository.findByFirstNameIgnoreCase(firstName);
     }
 
     @Override

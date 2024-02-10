@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learning.app.entity.User;
-import com.learning.app.service.UserServiceImpl;
+import com.learning.app.service.UserService;
+import com.learning.app.service.impl.UserServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("api/users")
 public class UserController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @GetMapping("")
     public List<User> findAll() {
