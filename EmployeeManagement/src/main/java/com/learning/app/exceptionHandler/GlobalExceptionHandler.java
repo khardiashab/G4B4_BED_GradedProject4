@@ -32,8 +32,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<Object> customExceptionHandler(CustomException ex) {
         Map<String, Object> response = new HashMap<>();
-        response.put("errorCode", ex.getErrorCode());
         response.put("message", ex.getLocalizedMessage());
-        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode()));
+        return new ResponseEntity<>(response, ex.getStatus());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> exceptionHandler(Exception ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

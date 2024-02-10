@@ -3,7 +3,6 @@ package com.learning.app.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
@@ -14,16 +13,15 @@ public class NoSecurityConfig {
 
     // For removing all the security to all routes for test without security.
     @Bean
-    WebSecurityCustomizer webSecurityCustomizer(){
+    WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring().requestMatchers("/**");
     }
 
-    // To disable the csrf and cors to working fine with input 
+    // To disable the csrf and cors to working fine with input
     @Bean
     SecurityFilterChain noSecurity(HttpSecurity http) throws Exception {
         http.cors(cors -> cors.disable())
-                .csrf(csrf -> csrf.disable())
-                .formLogin(Customizer.withDefaults());
+                .csrf(csrf -> csrf.disable());
         return http.build();
     }
 

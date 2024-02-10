@@ -1,10 +1,10 @@
 package com.learning.app.entity;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -44,6 +44,7 @@ public class User {
     private String username;
 
     @NotEmpty(message = "password can't empty.")
+    @JsonIgnore
     private String password;
 
     @ManyToMany( fetch = FetchType.EAGER)

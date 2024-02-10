@@ -1,20 +1,22 @@
 package com.learning.app.exception;
 
+import org.springframework.http.HttpStatus;
+
 public class CustomException extends RuntimeException {
 
-    private final int errorCode;
+    private HttpStatus status;
 
-    public CustomException(String message, int errorCode) {
+    public CustomException(String message, HttpStatus status) {
         super(message);
-        this.errorCode = errorCode;
+        this.status = status;
     }
 
-    public CustomException(String message, Throwable arg1, int errorCode) {
-        super(message, arg1);
-        this.errorCode = errorCode;
+    public HttpStatus getStatus() {
+        return status;
     }
 
-    public int getErrorCode() {
-        return errorCode;
+    public void setStatus(HttpStatus status) {
+        this.status = status;
     }
+
 }

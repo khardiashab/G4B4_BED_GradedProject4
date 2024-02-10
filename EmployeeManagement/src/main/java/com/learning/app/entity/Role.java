@@ -24,6 +24,7 @@ public class Role {
     private Integer id;
 
     @NotBlank(message = "Role name can be empty.")
+    @Column(unique = true)
     private String name;
 
     public Role(String name) {

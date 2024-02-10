@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.learning.app.entity.Role;
 import com.learning.app.service.RoleService;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController

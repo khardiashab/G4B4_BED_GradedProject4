@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.learning.app.entity.User;
 import com.learning.app.service.UserService;
-import com.learning.app.service.impl.UserServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
