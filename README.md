@@ -87,6 +87,7 @@ If you are running the application with the `test` profile, all security measure
 
 Please ensure that the `test` profile is used only for testing purposes and not in production environments to maintain the security of your application.
 
+### Running with Dev Profile
 The API endpoints are secured using Spring Security with the following configuration:
 
 - Access to the H2 Database Console is unrestricted for testing purposes.
