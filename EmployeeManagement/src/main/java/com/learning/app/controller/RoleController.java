@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.learning.app.entity.Role;
 import com.learning.app.service.RoleService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -26,7 +27,7 @@ public class RoleController {
     }
 
     @PostMapping()
-    public Role save(@RequestBody Role role) {
+    public Role save(@RequestBody @Valid  Role role) {
         return roleService.save(role);
     }
 }

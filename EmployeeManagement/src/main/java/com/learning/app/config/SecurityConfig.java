@@ -8,6 +8,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.learning.app.service.impl.UserDetailsServiceImpl;
@@ -23,23 +24,30 @@ public class SecurityConfig {
     private final CustomPasswordEncoder passwordEncoder;
 
     @Bean
-    AuthenticationProvider auth() {
+    AuthenticationProvider authProvider() {
         DaoAuthenticationProvider dao = new DaoAuthenticationProvider();
         dao.setPasswordEncoder(passwordEncoder);
         dao.setUserDetailsService(userDetailsService);
         return dao;
     }
 
+    // For removing all the security to all routes for test without security.
     @Bean
-    SecurityFilterChain security(HttpSecurity http) throws Exception {
+    WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("/h2-console/**");
+    }
+
+    @Bean
+    SecurityFilterChain configure(HttpSecurity http) throws Exception {
         // Security filter
         http.authorizeHttpRequests(
                 auth -> auth
-                        .requestMatchers("/h2-console**", "/login**", "/logout**", "/actuator**", "/api/roles**", "api/users**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/roles", "/api/users").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/employees", "/api/employees/{id}").hasRole("ADMIN")
-                        .requestMatchers("/api/employees/**").hasAnyRole("ADMIN", "USER")
-                        .anyRequest().fullyAuthenticated());
+                .requestMatchers("/h2-console**", "/login", "/logout", "/api/roles**", "api/users**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/employees/").hasAnyAuthority("ADMIN","USER")
+                .requestMatchers(HttpMethod.POST, "/api/employees", "/api/employees/{id}").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/roles", "/api/users").permitAll()
+                .anyRequest().authenticated()
+                );
 
         http.cors(c -> c.disable());
         http.csrf(csrf -> csrf.disable());

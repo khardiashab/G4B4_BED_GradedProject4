@@ -21,7 +21,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role save(Role role) {
         role.setName(role.getName().trim().toUpperCase());
-        if(role.getName().equals("USER") || role.getName().equals("ADMIN")){
+        if (role.getName().equals("USER") || role.getName().equals("ADMIN")) {
             return repository.save(role);
         } else {
             throw new NotAValidRoleExcetpion(role.getName());
@@ -32,8 +32,9 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> findAll() {
         return repository.findAll();
     }
-
-    public Optional<Role> findById(int roleId){
+    
+    @Override
+    public Optional<Role> findById(int roleId) {
         return repository.findById(roleId);
     }
 }

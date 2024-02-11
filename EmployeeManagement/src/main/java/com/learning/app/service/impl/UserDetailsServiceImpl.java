@@ -19,7 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findByUsername(username);
+        User user = userService.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username is not valid: " + username));
         return new DomainUserDetails(user);
     }
     

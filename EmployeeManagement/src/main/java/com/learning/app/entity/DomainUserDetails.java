@@ -22,6 +22,7 @@ public class DomainUserDetails implements UserDetails {
        roles.forEach(role -> {
         authorities.add(new SimpleGrantedAuthority(role.getName()));
        });
+       System.out.println( authorities);
        return authorities;
         // return user.getRoles().stream()
         //         .map(Role::getName)
@@ -58,5 +59,5 @@ public class DomainUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    //
+    
 }

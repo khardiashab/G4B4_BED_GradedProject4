@@ -1,6 +1,7 @@
 package com.learning.app.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,8 +46,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUsername(String username) {
-        return repository.findByUsername(username).get();
+    public Optional<User> findByUsername(String username) {
+        return repository.findByUsername(username);
     }
 
     @Override

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.learning.app.entity.User;
 import com.learning.app.service.UserService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping("")
-    public User save(@RequestBody User user) {
+    public User save(@RequestBody @Valid User user) {
         return userService.save(user);
     }
 }

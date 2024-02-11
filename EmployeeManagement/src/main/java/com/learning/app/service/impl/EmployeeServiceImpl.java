@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.learning.app.entity.Employee;
+import com.learning.app.exception.EmployeeNotFounException;
 import com.learning.app.repository.EmployeeRepository;
 import com.learning.app.service.EmployeeService;
 
@@ -31,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findById(Long employeeId) {
-        return repository.findById(employeeId).get();
+        return repository.findById(employeeId).orElseThrow(() -> new EmployeeNotFounException(employeeId) );
     }
 
     @Override

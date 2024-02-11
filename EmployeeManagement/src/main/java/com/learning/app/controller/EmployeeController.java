@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.learning.app.entity.Employee;
 import com.learning.app.service.EmployeeService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -34,12 +35,12 @@ public class EmployeeController {
     }
 
     @PostMapping("")
-    public Employee save(@RequestBody Employee employee){
+    public Employee save(@RequestBody @Valid Employee employee){
         return employeeService.save(employee);
     }
 
     @PostMapping("/{employeeId}")
-    public Employee update(@PathVariable("employeeId") Long employeeId, @RequestBody Employee employee){
+    public Employee update(@PathVariable("employeeId") Long employeeId, @RequestBody @Valid Employee employee){
         employee.setId(employeeId);
         return employeeService.update(employeeId, employee);
     }
