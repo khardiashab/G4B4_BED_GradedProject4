@@ -28,12 +28,12 @@ public class Employee {
 
     @NotEmpty(message = "First name can't empty.")
     private String firstName;
-    
+
     @NotEmpty(message = "Last name can't empty.")
     private String lastName;
 
     @NotEmpty(message = "Email name can't empty.")
-    @Email(message="Email should be email proper email.")
+    @Email(message = "Email should be email proper email.")
     private String email;
 
     public Employee(String firstName, String lastName, String email) {
@@ -41,4 +41,5 @@ public class Employee {
         this.lastName = lastName;
         this.email = email;
     }
+
 }

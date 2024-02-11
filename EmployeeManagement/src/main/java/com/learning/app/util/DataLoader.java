@@ -15,13 +15,13 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @RequiredArgsConstructor
 public class DataLoader {
-    
+
     private Faker faker = new Faker();
     private final EmployeeService employeeService;
 
     @EventListener(ApplicationReadyEvent.class)
-    public void addEmployees(ApplicationReadyEvent event){
-        IntStream.range(0, 100).forEach(index ->{
+    public void addEmployees(ApplicationReadyEvent event) {
+        IntStream.range(0, 100).forEach(index -> {
             getNewEmployee();
         });
     }

@@ -3,7 +3,6 @@ package com.learning.app.service.impl;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.learning.app.entity.Employee;
@@ -32,20 +31,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findById(Long employeeId) {
-        return repository.findById(employeeId).orElseThrow(() -> new EmployeeNotFounException(employeeId) );
+        return repository.findById(employeeId).orElseThrow(() -> new EmployeeNotFounException(employeeId));
     }
 
     @Override
     public List<Employee> findAll(String sortOrder) {
-        Direction dir;
-        if (sortOrder.equalsIgnoreCase("asc")) {
-            dir = Direction.ASC;
-        } else if (sortOrder.equalsIgnoreCase("desc")) {
-            dir = Direction.DESC;
+        Sort.Order order;
+        // Remove non-alphabetic characters from the beginning and end of the string
+        sortOrder = sortOrder.replaceAll("^[^a-zA-Z]+|[^a-zA-Z]+$", "");
+        if (sortOrder.equalsIgnoreCase("desc")) {
+            order = Sort.Order.desc("firstName").ignoreCase();
         } else {
-            dir = Direction.ASC;
+            order = Sort.Order.asc("firstName").ignoreCase();
         }
-        Sort sort = Sort.by(dir, "firstName");
+        Sort sort = Sort.by(order);
         return repository.findAll(sort);
     }
 

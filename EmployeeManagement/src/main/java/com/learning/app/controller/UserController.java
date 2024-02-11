@@ -30,4 +30,5 @@ public class UserController {
     public User save(@RequestBody @Valid User user) {
         return userService.save(user);
     }
+
 }

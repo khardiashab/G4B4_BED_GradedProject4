@@ -42,12 +42,12 @@ public class SecurityConfig {
         // Security filter
         http.authorizeHttpRequests(
                 auth -> auth
-                .requestMatchers("/h2-console**", "/login", "/logout", "/api/roles**", "api/users**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/employees/").hasAnyAuthority("ADMIN","USER")
-                .requestMatchers(HttpMethod.POST, "/api/employees", "/api/employees/{id}").hasAuthority("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/roles", "/api/users").permitAll()
-                .anyRequest().authenticated()
-                );
+                        .requestMatchers("/h2-console**", "/login", "/logout", "/api/roles**", "api/users**")
+                        .permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/employees/").hasAnyAuthority("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/employees", "/api/employees/{id}").hasAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/roles", "/api/users").permitAll()
+                        .anyRequest().authenticated());
 
         http.cors(c -> c.disable());
         http.csrf(csrf -> csrf.disable());

@@ -9,7 +9,7 @@ public class EmployeeNotFounException extends CustomException {
     }
 
     public EmployeeNotFounException(String employeeFirstName) {
-        super("Employee is not found with FirstName: " + employeeFirstName, HttpStatus.NOT_FOUND );
+        super("Employee is not found with FirstName: " + employeeFirstName, HttpStatus.NOT_FOUND);
     }
 
 }

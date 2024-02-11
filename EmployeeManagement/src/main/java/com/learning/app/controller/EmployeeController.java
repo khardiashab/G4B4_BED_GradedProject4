@@ -35,12 +35,12 @@ public class EmployeeController {
     }
 
     @PostMapping("")
-    public Employee save(@RequestBody @Valid Employee employee){
+    public Employee save(@RequestBody @Valid Employee employee) {
         return employeeService.save(employee);
     }
 
     @PostMapping("/{employeeId}")
-    public Employee update(@PathVariable("employeeId") Long employeeId, @RequestBody @Valid Employee employee){
+    public Employee update(@PathVariable("employeeId") Long employeeId, @RequestBody @Valid Employee employee) {
         employee.setId(employeeId);
         return employeeService.update(employeeId, employee);
     }
@@ -60,4 +60,5 @@ public class EmployeeController {
             @RequestParam(name = "order", defaultValue = "asc") String sortOrder) {
         return employeeService.findAll(sortOrder);
     }
+
 }

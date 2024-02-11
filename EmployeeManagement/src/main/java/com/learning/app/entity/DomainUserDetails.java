@@ -17,17 +17,12 @@ public class DomainUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-       List<Role> roles = user.getRoles();
-       List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-       roles.forEach(role -> {
-        authorities.add(new SimpleGrantedAuthority(role.getName()));
-       });
-       System.out.println( authorities);
-       return authorities;
-        // return user.getRoles().stream()
-        //         .map(Role::getName)
-        //         .map(SimpleGrantedAuthority::new)
-        //         .collect(Collectors.toList());
+        List<Role> roles = user.getRoles();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        roles.forEach(role -> {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        });
+        return authorities;
     }
 
     @Override
@@ -59,5 +54,5 @@ public class DomainUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    
+
 }

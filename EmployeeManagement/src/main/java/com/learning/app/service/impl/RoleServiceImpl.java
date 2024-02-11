@@ -32,7 +32,7 @@ public class RoleServiceImpl implements RoleService {
     public List<Role> findAll() {
         return repository.findAll();
     }
-    
+
     @Override
     public Optional<Role> findById(int roleId) {
         return repository.findById(roleId);
